@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Spinner from '../../Components/Spinner';
+import Loader from '../../Components/Loader';
 
 import Layout from '../Layout';
 
@@ -13,6 +14,7 @@ import CardFeed from '../../Components/CardFeed';
 const Main = () => {
     const [page, setPage] = useState(0);
     const { feeds, loading: totalFeeds, getFeeds, setFeeds, filterFeeds } = useFeed();
+    const [paginate, setpaginate] = useState(20);
 
     useEffect(() => {
         getFeeds(page);
@@ -50,6 +52,10 @@ const Main = () => {
 
     const [element, setElement] = useState(null);
 
+    const load_more = (event) => {
+        setpaginate((prevValue) => prevValue + 20);
+      };
+
     useEffect(() => {
         const currentElement = element;
         const currentObserver = observer.current;
@@ -73,8 +79,12 @@ const Main = () => {
                         filterFeeds ? (
                             feeds
                                 .filter((item) => item.id === filterFeeds)
+                                .slice(0, paginate)
                                 .map(feed => <CardFeed key={feed.id} feed={feed} />)
-                        ) : (feeds.map(feed => <CardFeed key={feed.id} feed={feed} />))
+                        ) : (
+                            feeds
+                                .slice(0, paginate)
+                                .map(feed => <CardFeed key={feed.id} feed={feed} />))
                         }
 
                     {!!feeds && feeds.length > 0 && (
@@ -91,12 +101,15 @@ const Main = () => {
                             ref={setElement}
                             type="button" />
                     )}
-
-                    
+  
                     {   //Adjust
                        1 == 2 && (//feedLoading && (
                         <Spinner />
                     )}
+
+                    <button onClick={load_more}>Carregar mais</button>
+              
+                    
                 </ContainerFeeds>
             </Container>
         </Layout>

@@ -7,7 +7,8 @@ export const Card = styled.div`
   float: left;
   display: flex;
   flex-direction: column;
-  width: 350px;
+  width: 450px;
+  height: 450px;
   padding: 5px;
   
 
@@ -69,7 +70,7 @@ export const CardDetails = styled.div`
 
 export const TimeAgo = styled.span`
   color: #999999;
-  font-size: 10px;
+  font-size: 16px;
   letter-spacing: 0.2px;
   text-transform: uppercase;
 `;

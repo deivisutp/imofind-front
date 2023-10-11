@@ -31,7 +31,7 @@ const CardFeed = ({ feed }) => {
                         display: "inline-block",
                     }}
                 >
-                    {extra}
+                    {titulo}
                 </span>
                 <span
                     style={{
@@ -59,7 +59,7 @@ const CardFeed = ({ feed }) => {
                         fontWeight: 100
                     }}>
                     <span>
-                        {titulo}
+                        {extra}
                     </span>
                
                 </div> 
